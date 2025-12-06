@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AccessMate — Mall Guidance</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="phone">
+        <header>
+            <div class="title">AccessMate</div>
+            <div class="subtitle">User-perspective — Elevator → Restroom</div>
+        </header>
+
+        <div class="info-bar">
+            <span id="distance">Distance: 0 m</span>
+            <span id="time">Est. Time: 0 min</span>
+        </div>
+
+        <div class="map-wrap">
+            <div id="mapContainer">
+                <svg id="svgMap" viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet">
+                    <rect class="floor" x="0" y="0" width="1000" height="700"/>
+                    <rect class="wall" x="20" y="20" width="960" height="660" rx="16"/>
+
+                    <!-- ==== SHOPS (fixed – text is now sibling, not child) ==== -->
+                    <rect x="50"   y="30"  width="160" height="80" class="shop shopA"/>
+                    <text x="130"  y="75"  text-anchor="middle" class="label">Shop</text>
+
+                    <rect x="230"  y="30"  width="160" height="80" class="shop shopB"/>
+                    <text x="310"  y="75"  text-anchor="middle" class="label">Cafe</text>
+
+                    <rect x="410"  y="30"  width="160" height="80" class="shop shopC"/>
+                    <text x="490"  y="75"  text-anchor="middle" class="label">Boutique</text>
+
+                    <rect x="590"  y="30"  width="160" height="80" class="shop shopD"/>
+                    <text x="670"  y="75"  text-anchor="middle" class="label">Food Court</text>
+
+                    <rect x="770"  y="30"  width="180" height="80" class="shop shopE"/>
+                    <text x="860"  y="75"  text-anchor="middle" class="label">Bookstore</text>
+
+                    <!-- Central courtyard -->
+                    <circle cx="200" cy="320" r="120" fill="#f0f0f0" stroke="#b0c4de" stroke-width="4"/>
+                    <text x="200" y="320" text-anchor="middle" class="label" font-size="14px">Court</text>
+
+                    <!-- Elevator -->
+                    <g id="elev" transform="translate(80,540)">
+                        <svg width="40" height="40" viewBox="0 0 24 24">
+                            <path fill="#3b2f00" d="M6 22h12v-2H6v2zm0-6h12v-2H6v2zm0-6h12V8H6v2zm0-6h12V2H6v2z"/>
+                        </svg>
+                    </g>
+                    <text x="100" y="590" text-anchor="middle" class="label">Elevator</text>
+
+                    <!-- Bottom row shops (also fixed) -->
+                    <rect x="190" y="500" width="150" height="150" class="shop shopA"/>
+                    <text x="265" y="580" text-anchor="middle" class="label">Retail</text>
+
+                    <rect x="350" y="500" width="300" height="150" class="shop shopC"/>
+                    <text x="500" y="580" text-anchor="middle" class="label">Clothing</text>
+
+                    <rect x="670" y="500" width="270" height="150" class="shop shopB"/>
+                    <text x="805" y="580" text-anchor="middle" class="label">Electronics</text>
+
+                    <rect x="400" y="200" width="200" height="150" class="shop shopF"/>
+                    <text x="500" y="275" text-anchor="middle" class="label">Shoes</text>
+
+                    <rect x="620" y="200" width="180" height="150" class="shop shopE"/>
+                    <text x="710" y="275" text-anchor="middle" class="label">Jewelry</text>
+
+                    <!-- Accessible Restroom -->
+                    <g id="dest" transform="translate(880,320)">
+                        <svg width="40" height="40" viewBox="0 0 64 64">
+                            <circle cx="32" cy="16" r="6" fill="#0077ee"/>
+                            <path fill="#0077ee" d="M28 24h8l8 24h-8l-4-12h-8z"/>
+                            <circle cx="36" cy="56" r="6" fill="#0077ee"/>
+                        </svg>
+                    </g>
+                    <text x="880" y="370" text-anchor="middle" class="label">Accessible Restroom</text>
+
+                    <!-- Path -->
+                    <path class="full-path" d="M100 560 L100 480 L880 480 L880 340"/>
+
+                    <path id="S1" class="seg" d="M100 560 L100 480"/>
+                    <path id="S2" class="seg" d="M100 480 L880 480"/>
+                    <path id="S3" class="seg" d="M880 480 L880 340"/>
+
+                    <g id="markerGroup">
+                        <circle r="10" class="marker-dot"></circle>
+                    </g>
+                </svg>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="controls-row">
+                <button id="startBtn" class="btn primary">Start</button>
+                <button id="pauseBtn" class="btn alt">Pause</button>
+                <button id="resumeBtn" class="btn alt">Resume</button>
+            </div>
+            <div id="instruction" class="hint" aria-live="polite">Tap Start. Marker will guide you.</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
